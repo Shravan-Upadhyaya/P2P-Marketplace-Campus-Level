@@ -67,5 +67,3 @@ The frontend is static and can be opened directly via `frontend/index.html` or s
 - Integrate a CDN or S3 bucket for durable image storage.
 
 Enjoy maintaining a safe, campus-only trading space!
-
-# P2P-Marketplace-Campus-Level-
