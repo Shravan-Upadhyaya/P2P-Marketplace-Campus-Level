@@ -1,0 +1,335 @@
+:root {
+  color-scheme: dark;
+  font-family: 'Space Grotesk', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --bg: #050505;
+  --surface: #0f0f0f;
+  --card: #121212;
+  --text: #e0e0e0;
+  --muted: #9ea5c9;
+  --neon: #00f0ff;
+  --neon-soft: rgba(0, 240, 255, 0.35);
+  --neon-gradient: linear-gradient(130deg, #00f0ff, #5c4dff 60%, #9a4dff);
+  --danger: #ff4d6d;
+  --success: #4dffb5;
+  --shadow: 0 25px 60px -40px rgba(0, 0, 0, 0.9);
+  --transition: 0.35s ease;
+}
+
+body {
+  background: radial-gradient(circle at top, #111122, #050505 60%);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.glass-header {
+  backdrop-filter: blur(14px);
+  background: rgba(5, 5, 5, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 15;
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.logo-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--neon);
+  box-shadow: 0 0 15px var(--neon);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  position: relative;
+  padding: 0.4rem 0.75rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 0;
+  height: 2px;
+  background: var(--neon);
+  border-radius: 999px;
+  transform: scaleX(0);
+  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 0 8px var(--neon);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--text);
+}
+
+.nav-links a.active::after,
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+.hero {
+  background: var(--card);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.45), transparent 70%);
+  z-index: 0;
+  filter: blur(8px);
+}
+
+.hero::before {
+  top: -60px;
+  right: -40px;
+}
+
+.hero::after {
+  bottom: -70px;
+  left: -50px;
+  background: radial-gradient(circle, rgba(154, 77, 255, 0.4), transparent 70%);
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-group button {
+  position: relative;
+  overflow: hidden;
+}
+
+button.primary {
+  background: var(--neon-gradient);
+  color: #050505;
+  border: 1px solid transparent;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--neon);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15) inset;
+}
+
+button.ghost {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+button.ripple {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button.ripple:hover {
+  transform: translateY(-2px) scale(1.01);
+}
+
+button.ripple::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  top: var(--ripple-y, 50%);
+  left: var(--ripple-x, 50%);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+button.ripple.is-animating::after {
+  animation: ripple 0.6s ease-out;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), border var(--transition), box-shadow var(--transition);
+}
+
+.card.glass {
+  backdrop-filter: blur(18px);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--neon-soft);
+  box-shadow: 0 20px 45px -25px rgba(0, 240, 255, 0.35);
+}
+
+input,
+select,
+textarea {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  border-radius: 16px;
+  transition: border var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--neon);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.45);
+}
+
+.cards-grid .card,
+.my-item {
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform var(--transition), border var(--transition), box-shadow var(--transition);
+}
+
+.cards-grid .card:hover,
+.my-item:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 25px 45px -30px rgba(0, 240, 255, 0.45);
+}
+
+.item-card img,
+.my-item-info img {
+  border-radius: 16px;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.15);
+}
+
+table {
+  color: var(--text);
+  border-collapse: collapse;
+}
+
+thead {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+tbody tr:hover {
+  background: rgba(0, 240, 255, 0.08);
+}
+
+td,
+th {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.badge {
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.badge.open {
+  color: var(--danger);
+  background: rgba(255, 77, 109, 0.15);
+}
+
+.badge.resolved {
+  color: var(--success);
+  background: rgba(77, 255, 181, 0.15);
+}
+
+.view {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.view.hidden {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+.neon-spinner {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(5, 5, 5, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.neon-spinner span {
+  width: 70px;
+  height: 70px;
+  border: 4px solid rgba(0, 240, 255, 0.2);
+  border-top-color: var(--neon);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+footer {
+  color: var(--muted);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ripple {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.6;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(9);
+    opacity: 0;
+  }
+}
+

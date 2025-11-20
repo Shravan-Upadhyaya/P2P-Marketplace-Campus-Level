@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus P2P Marketplace</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./dark-theme.css" />
+  </head>
+  <body>
+    <header class="glass-header">
+      <nav class="navbar">
+        <div class="logo">
+          <span class="logo-dot"></span>
+          MITE Exchange
+        </div>
+        <ul class="nav-links">
+          <li><a href="#" data-section="home" class="active">Home</a></li>
+          <li><a href="#" data-section="browse">Browse Items</a></li>
+          <li><a href="#" data-section="my-items">My Items</a></li>
+          <li><a href="#" data-section="auth">Login / Register</a></li>
+          <li><a href="#" data-section="admin">Admin Dashboard</a></li>
+        </ul>
+        <button id="logoutBtn" class="ghost ripple" hidden>Logout</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="view">
+        <div class="hero">
+          <div>
+            <h1>Peer-to-Peer Marketplace</h1>
+            <p>
+              Buy, sell, or exchange items with your fellow MITE students. Keep it local, sustainable, and safe within the
+              campus community.
+            </p>
+            <div class="cta-group">
+              <button data-section="browse" class="primary ripple">Browse Items</button>
+              <button data-section="auth" class="secondary ripple">Join Community</button>
+            </div>
+          </div>
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Students exchanging items" />
+        </div>
+      </section>
+
+      <section id="browse" class="view hidden">
+        <div class="section-header">
+          <h2>Marketplace Listings</h2>
+          <div class="filters">
+            <input type="text" id="searchInput" placeholder="Search by title or category" />
+            <select id="categoryFilter">
+              <option value="">All categories</option>
+              <option>Electronics</option>
+              <option>Books</option>
+              <option>Appliances</option>
+              <option>Furniture</option>
+              <option>Services</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div id="itemsGrid" class="cards-grid"></div>
+      </section>
+
+      <section id="my-items" class="view hidden">
+        <h2>My Items</h2>
+        <p class="muted">Post new items or manage what you are currently selling.</p>
+        <form id="itemForm" class="card form-card">
+          <input type="hidden" id="itemId" />
+          <input type="hidden" id="itemImageUrl" />
+          <div class="form-grid">
+            <label>
+              Title
+              <input type="text" id="itemTitle" required />
+            </label>
+            <label>
+              Category
+              <select id="itemCategory" required>
+                <option value="">Choose category</option>
+                <option>Electronics</option>
+                <option>Books</option>
+                <option>Appliances</option>
+                <option>Furniture</option>
+                <option>Services</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>
+              Price (₹)
+              <input type="number" id="itemPrice" min="0" step="10" required />
+            </label>
+            <label>
+              Image
+              <input type="file" id="itemImage" accept="image/png,image/jpeg,image/webp" />
+            </label>
+          </div>
+          <label>
+            Description
+            <textarea id="itemDescription" rows="3" required></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="primary ripple" id="saveItemBtn">Save Item</button>
+            <button type="button" class="ghost ripple" id="resetItemBtn">Reset</button>
+          </div>
+        </form>
+
+        <div id="myItemsList" class="cards-list"></div>
+      </section>
+
+      <section id="auth" class="view hidden">
+        <div id="authAlert" class="alert hidden"></div>
+        <div class="auth-grid">
+          <div class="card glass">
+          <h3>Student Login</h3>
+          <form id="loginForm">
+            <label>Email
+                <input type="email" id="loginEmail" placeholder="usn@mite.ac.in" required />
+            </label>
+            <label>Password
+              <input type="password" id="loginPassword" required />
+            </label>
+              <button type="submit" class="primary full ripple">Login</button>
+          </form>
+          <hr />
+          <h3>New to the marketplace?</h3>
+          <form id="registerForm">
+            <label>Full Name
+              <input type="text" id="regName" required />
+            </label>
+            <label>Campus Email
+                <input type="email" id="regEmail" placeholder="usn@mite.ac.in" required />
+            </label>
+            <label>Password
+              <input type="password" id="regPassword" required />
+            </label>
+              <button type="submit" class="secondary full ripple">Create account</button>
+          </form>
+        </div>
+
+          <div class="card glass">
+          <h3>Admin Login</h3>
+          <p class="muted">Restricted access for marketplace moderators.</p>
+          <form id="adminLoginForm">
+            <label>Email
+              <input type="email" id="adminEmail" required />
+            </label>
+            <label>Password
+              <input type="password" id="adminPassword" required />
+            </label>
+              <button type="submit" class="primary full ripple">Admin Login</button>
+          </form>
+        </div>
+        </div>
+      </section>
+
+      <section id="admin" class="view hidden">
+        <h2>Admin Dashboard</h2>
+        <div class="admin-panels">
+          <div class="card glass">
+            <div class="section-header">
+              <h3>Users</h3>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminUsers"></tbody>
+            </table>
+          </div>
+          <div class="card glass">
+            <div class="section-header">
+              <h3>Items</h3>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Owner</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminItems"></tbody>
+            </table>
+          </div>
+          <div class="card glass">
+            <div class="section-header">
+              <h3>Reports</h3>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Reporter</th>
+                  <th>Reason</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminReports"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© <span id="year"></span> MITE Campus Marketplace. Built for campus-only trading.</p>
+    </footer>
+
+    <div id="globalSpinner" class="neon-spinner hidden" role="status" aria-live="polite">
+      <span></span>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+
