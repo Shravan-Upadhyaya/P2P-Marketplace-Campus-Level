@@ -21,7 +21,6 @@ Full-stack sample project that enables MITE students to trade items inside the c
 ### Backend Setup
 ```bash
 cd backend
-cp env.example .env   # update DB credentials + JWT secret
 npm install
 npm run dev           # or npm start
 ```

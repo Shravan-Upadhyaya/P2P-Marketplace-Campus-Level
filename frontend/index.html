@@ -71,10 +71,10 @@
           <div class="form-grid">
             <label>
               Title
-              <input type="text" id="itemTitle" required />
+              <br><br><input type="text" id="itemTitle" required />
             </label>
             <label>
-              Category
+              Category<br><br>
               <select id="itemCategory" required>
                 <option value="">Choose category</option>
                 <option>Electronics</option>
@@ -86,18 +86,18 @@
               </select>
             </label>
             <label>
-              Price (₹)
+              Price (₹)<br><br>
               <input type="number" id="itemPrice" min="0" step="10" required />
             </label>
             <label>
-              Image
+              Image<br><br>
               <input type="file" id="itemImage" accept="image/png,image/jpeg,image/webp" />
             </label>
           </div>
           <label>
-            Description
+            Description<br><br>
             <textarea id="itemDescription" rows="3" required></textarea>
-          </label>
+          </label><br><br>
           <div class="form-actions">
             <button type="submit" class="primary ripple" id="saveItemBtn">Save Item</button>
             <button type="button" class="ghost ripple" id="resetItemBtn">Reset</button>
@@ -119,9 +119,10 @@
             <label>Password
               <input type="password" id="loginPassword" required />
             </label>
+            <br>
               <button type="submit" class="primary full ripple">Login</button>
           </form>
-          <hr />
+          <br><hr />
           <h3>New to the marketplace?</h3>
           <form id="registerForm">
             <label>Full Name
@@ -133,6 +134,7 @@
             <label>Password
               <input type="password" id="regPassword" required />
             </label>
+            <br>
               <button type="submit" class="secondary full ripple">Create account</button>
           </form>
         </div>
@@ -147,6 +149,7 @@
             <label>Password
               <input type="password" id="adminPassword" required />
             </label>
+            <br>
               <button type="submit" class="primary full ripple">Admin Login</button>
           </form>
         </div>

@@ -1,5 +1,3 @@
--- Database schema for Peer-to-Peer Marketplace (campus scope)
-
 DROP DATABASE IF EXISTS campus_marketplace;
 CREATE DATABASE campus_marketplace;
 USE campus_marketplace;
@@ -43,18 +41,5 @@ CREATE TABLE reports (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- Sample data (password hashes generated with bcrypt, salt rounds=10)
 INSERT INTO admins (email, password) VALUES
-('admin@mite.ac.in', '$2a$10$7eqJtq98hPqEX7fNZaFWoOaR8S4/l5GfM9mWph7rLeQUYdeteGBOa');
-
-INSERT INTO users (name, email, password) VALUES
-('Aditi Rao', 'aditi.rao@mite.ac.in', '$2a$10$7eqJtq98hPqEX7fNZaFWoOaR8S4/l5GfM9mWph7rLeQUYdeteGBOa'),
-('Bhavesh Kulkarni', 'bhavesh.k@mite.ac.in', '$2a$10$7eqJtq98hPqEX7fNZaFWoOaR8S4/l5GfM9mWph7rLeQUYdeteGBOa');
-
-INSERT INTO items (user_id, title, description, price, category, image_url) VALUES
-(1, 'Graphing Calculator', 'Casio fx-991EX in great condition.', 2200.00, 'Electronics', '/uploads/sample-calculator.jpg'),
-(2, 'Dorm Mini Fridge', 'Compact fridge perfect for hostel rooms.', 3500.00, 'Appliances', '/uploads/sample-fridge.jpg');
-
-INSERT INTO reports (item_id, user_id, reason, status) VALUES
-(1, 2, 'Listing price seems too high for used condition.', 'open');
-
+('admin@mite.ac.in', '$2b$10$kO2gPUvCaUg8uX0skukM8.riJBnJeTbk6P3IEIO31ewwx6KImNM7m');
